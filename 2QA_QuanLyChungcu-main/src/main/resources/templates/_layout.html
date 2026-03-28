@@ -400,29 +400,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var path = window.location.pathname;
-    var links = document.querySelectorAll('.nav-tabs-custom .nav-link-tab');
-    var matched = false;
-    links.forEach(function(link) {
-        link.classList.remove('active');
-        var href = link.getAttribute('href');
-        if (href && href !== '/Apartments' && path.startsWith(href)) {
-            link.classList.add('active');
-            matched = true;
-        }
-    });
-    // Neu khong match link nao -> active Trang chu
-    if (!matched) {
-        links.forEach(function(link) {
-            var href = link.getAttribute('href');
-            if (href === '/Apartments') {
-                link.classList.add('active');
-            }
-        });
-    }
-});
-</script>
+<script th:src="@{/js/navbar.js}" defer></script>
 </body>
 </html>

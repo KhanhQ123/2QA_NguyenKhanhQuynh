@@ -52,8 +52,7 @@
         <div class="form-group mb-3">
             <label for="imageFile">Hinh anh:</label>
             <input class="form-control" type="file" id="imageFile" name="imageFile"
-                   accept="image/*" onchange="previewImage(this)">
-            <div class="image-preview-box" id="previewBox">
+                   accept="image/*" onchange="previewImage(this)">            <div class="image-preview-box" id="previewBox">
                 <span style="color:#aaa;font-size:13px;">Chua chon anh</span>
             </div>
             <input type="hidden" th:field="*{image}">
@@ -78,17 +77,6 @@
     </form>
 </div>
 
-<script>
-    function previewImage(input) {
-        const box = document.getElementById('previewBox');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                box.innerHTML = '<img src="' + e.target.result + '">';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
+<script th:src="@{/js/image-preview.js}" defer></script>
 </body>
 </html>

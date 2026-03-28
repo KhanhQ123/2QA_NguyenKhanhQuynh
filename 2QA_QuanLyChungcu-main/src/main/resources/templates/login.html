@@ -94,8 +94,7 @@
 
             <div class="input-group">
                 <label for="register-role">Quyen truy cap</label>
-                <select id="register-role" name="role" onchange="toggleChungCuId()">
-                    <option value="ROLE_USER">User - Cu dan chung cu</option>
+                <select id="register-role" name="role" onchange="toggleChungCuId()">                    <option value="ROLE_USER">User - Cu dan chung cu</option>
                     <option value="ROLE_MANAGER">Manager - Quan ly thong bao</option>
                     <option value="ROLE_ADMIN">Admin - Quan ly chung cu</option>
                 </select>
@@ -118,37 +117,11 @@
 </div>
 
 <script th:src="@{/js/login.js}" defer></script>
+<script th:src="@{/js/login-register.js}" defer></script>
 
-<script>
-    // Hien/an o Ma chung cu theo role
-    function toggleChungCuId() {
-        var role = document.getElementById('register-role').value;
-        var group = document.getElementById('chungCuId-group');
-        var roomGroup = document.getElementById('room-group');
-        if (role === 'ROLE_USER') {
-            group.style.display = 'block';
-            roomGroup.style.display = 'block';
-        } else {
-            group.style.display = 'none';
-            roomGroup.style.display = 'none';
-            document.getElementById('register-chungcuid').value = '';
-            document.getElementById('register-room').value = '';
-        }
-    }
-    // Goi khi trang load lan dau
-    document.addEventListener('DOMContentLoaded', function() {
-        toggleChungCuId();
-    });
-</script>
-
-<!-- Tu dong mo tab dang ky neu co loi -->
+<!-- Truyền flag openRegister từ server sang JS -->
 <th:block th:if="${openRegister}">
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector('[data-target="#register-form"]').click();
-            toggleChungCuId();
-        });
-    </script>
+    <script>window.__openRegister = true;</script>
 </th:block>
 
 </body>
