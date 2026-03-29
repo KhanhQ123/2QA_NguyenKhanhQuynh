@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Quan ly chung cu - Dang nhap / Dang ky</title>
+    <title>Quản lý chung cư - Đăng nhập / Đăng ký</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/login.css}">
@@ -27,20 +27,20 @@
 
 <div class="auth-wrapper">
     <div class="brand-panel">
-        <h1>Quan ly chung cu</h1>
-        <p>He thong quan ly toa nha, can ho, cu dan mot cach truc quan.</p>
+        <h1>Quản lý chung cư</h1>
+        <p>Hệ thống quản lý tòa nhà, căn hộ, cư dân một cách trực quan.</p>
     </div>
 
     <div class="auth-card">
         <div class="tabs">
-            <button class="tab-button active" data-target="#login-form">Dang nhap</button>
-            <button class="tab-button" data-target="#register-form">Dang ky</button>
+            <button class="tab-button active" data-target="#login-form">Đăng nhập</button>
+            <button class="tab-button" data-target="#register-form">Đăng ký</button>
         </div>
 
         <!-- Thong bao dang nhap -->
-        <div th:if="${param.error}" class="error-msg">Sai tai khoan hoac mat khau!</div>
-        <div th:if="${param.oauth2error}" class="error-msg">Dang nhap Google that bai. Tai khoan Google khong co email hop le.</div>
-        <div th:if="${param.logout}" class="logout-msg">Ban da dang xuat thanh cong.</div>
+        <div th:if="${param.error}" class="error-msg">Sai tài khoản hoặc mật khẩu!</div>
+        <div th:if="${param.oauth2error}" class="error-msg">Đăng nhập Google thất bại. Tài khoản Google không có email hợp lệ.</div>
+        <div th:if="${param.logout}" class="logout-msg">Bạn đã đăng xuất thành công.</div>
 
         <!-- Thong bao dang ky -->
         <div th:if="${registerSuccess}" class="logout-msg" th:text="${registerSuccess}"></div>
@@ -48,76 +48,86 @@
 
         <!-- Form DANG NHAP -->
         <form id="login-form" class="form-panel active" th:action="@{/do-login}" method="post">
-            <h2>Chao mung tro lai</h2>
-            <p class="subtitle">Dang nhap de quan ly chung cu cua ban.</p>
+            <h2>Chào mừng trở lại</h2>
+            <p class="subtitle">Đăng nhập để quản lý chung cư của bạn.</p>
 
             <div class="input-group">
-                <label for="login-username">Ten dang nhap</label>
-                <input id="login-username" type="text" name="username" placeholder="Nhap username" required>
+                <label for="login-username">Tên đăng nhập</label>
+                <input id="login-username" type="text" name="username" placeholder="Nhập username" required>
             </div>
 
             <div class="input-group">
-                <label for="login-password">Mat khau</label>
-                <input type="password" id="login-password" name="password" placeholder="Nhap password" required>
-                <span class="toggle-password" data-target="#login-password">Hien</span>
+                <label for="login-password">Mật khẩu</label>
+                <input type="password" id="login-password" name="password" placeholder="Nhập password" required>
+                <span class="toggle-password" data-target="#login-password">Hiện</span>
             </div>
 
-            <button type="submit">Dang nhap</button>
+            <button type="submit">Đăng nhập</button>
             <div style="margin-top:12px;">
                 <a th:href="@{/oauth2/authorization/google}"
                    style="display:block;text-align:center;padding:10px 12px;border-radius:10px;border:1px solid #d1d5db;background:#ffffff;color:#111827;text-decoration:none;font-weight:600;">
-                    Dang nhap voi Google
+                    Đăng nhập với Google
                 </a>
             </div>
         </form>
 
         <!-- Form DANG KY /////-->
         <form id="register-form" class="form-panel" th:action="@{/register}" method="post">
-            <h2>Tao tai khoan moi</h2>
-            <p class="subtitle">Dang ky tai khoan quan tri chung cu.</p>
+            <h2>Tạo tài khoản mới</h2>
+            <p class="subtitle">Đăng ký tài khoản quản trị chung cư.</p>
 
             <div class="input-group">
-                <label for="register-username">Ten dang nhap</label>
-                <input id="register-username" type="text" name="username" placeholder="Vi du: quanly_chungcu" required>
+                <label for="register-username">Tên đăng nhập</label>
+                <input id="register-username" type="text" name="username" placeholder="Ví dụ: quanly_chungcu" required>
             </div>
 
             <div class="input-group">
-                <label for="register-password">Mat khau</label>
-                <input type="password" id="register-password" name="password" placeholder="Toi thieu 6 ky tu" required>
-                <span class="toggle-password" data-target="#register-password">Hien</span>
+                <label for="register-password">Mật khẩu</label>
+                <input type="password" id="register-password" name="password" placeholder="Tối thiểu 6 ký tự" required>
+                <span class="toggle-password" data-target="#register-password">Hiện</span>
             </div>
 
             <div class="input-group">
-                <label for="register-confirm">Nhap lai mat khau</label>
-                <input type="password" id="register-confirm" name="confirmPassword" placeholder="Nhap lai mat khau" required>
+                <label for="register-confirm">Nhập lại mật khẩu</label>
+                <input type="password" id="register-confirm" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
             </div>
 
             <div class="input-group">
-                <label for="register-role">Quyen truy cap</label>
-                <select id="register-role" name="role" onchange="toggleChungCuId()">                    <option value="ROLE_USER">User - Cu dan chung cu</option>
-                    <option value="ROLE_MANAGER">Manager - Quan ly thong bao</option>
-                    <option value="ROLE_ADMIN">Admin - Quan ly chung cu</option>
+                <label for="register-role">Quyền truy cập</label>
+                <select id="register-role" name="role" onchange="toggleChungCuId()">
+                    <option value="ROLE_USER">User - Cư dân chung cư</option>
+                    <option value="ROLE_ADMIN">Admin - Quản lý chung cư</option>
                 </select>
             </div>
 
             <div class="input-group" id="chungCuId-group">
-                <label for="register-chungcuid">Ma chung cu (ID)</label>
-                <input id="register-chungcuid" type="number" name="chungCuId" placeholder="Nhap ID chung cu (VD: 1, 2, 3)" min="1">
-                <small style="color:#64748b;font-size:12px;margin-top:4px;">Nhap dung ID chung cu (xem trong danh sach chung cu) de lien ket tai khoan.</small>
+                <label for="register-chungcuid">Mã chung cư (ID)</label>
+                <input id="register-chungcuid" type="number" name="chungCuId" placeholder="Nhập ID chung cư (VD: 1, 2, 3)" min="1">
+                <small style="color:#64748b;font-size:12px;margin-top:4px;">Nhập đúng ID chung cư (xem trong danh sách chung cư) để liên kết tài khoản.</small>
             </div>
 
-            <div class="input-group" id="room-group" style="display:none;">
-                <label for="register-room">Ma phong/cua so</label>
-                <input id="register-room" type="text" name="room" placeholder="VD: A1-102">
-            </div>
 
-            <button type="submit">Dang ky</button>
+
+            <button type="submit">Đăng ký</button>
         </form>
     </div>
 </div>
 
 <script th:src="@{/js/login.js}" defer></script>
 <script th:src="@{/js/login-register.js}" defer></script>
+<script>
+    function toggleChungCuId() {
+        var role = document.getElementById('register-role').value;
+        var chungCuGroup = document.getElementById('chungCuId-group');
+        if (role === 'ROLE_USER') {
+            chungCuGroup.style.display = '';
+        } else {
+            chungCuGroup.style.display = 'none';
+        }
+    }
+    // Chạy khi load trang để set đúng trạng thái ban đầu
+    document.addEventListener('DOMContentLoaded', function() { toggleChungCuId(); });
+</script>
 
 <!-- Truyền flag openRegister từ server sang JS -->
 <th:block th:if="${openRegister}">

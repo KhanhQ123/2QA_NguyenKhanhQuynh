@@ -4,13 +4,13 @@
       layout:decorate="~{_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Sua dich vu</title>
+    <title>Sửa dịch vụ</title>
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
     <div class="mt-4 mb-4">
         <h2 style="font-weight:700; color:#1e293b;">
-            <i class="bi bi-pencil-square me-2" style="color:#f59e0b;"></i>Sua dich vu
+            <i class="bi bi-pencil-square me-2" style="color:#f59e0b;"></i>Sửa dịch vụ
         </h2>
     </div>
 
@@ -20,34 +20,34 @@
                 <input type="hidden" th:field="*{id}"/>
 
                 <div class="mb-3">
-                    <label for="name" class="form-label fw-semibold">Ten dich vu <span class="text-danger">*</span></label>
+                    <label for="name" class="form-label fw-semibold">Tên dịch vụ <span class="text-danger">*</span></label>
                     <input class="form-control" type="text" id="name" th:field="*{name}" required
                            style="border-radius:8px; padding:10px 14px;">
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label fw-semibold">Mo ta</label>
+                    <label for="description" class="form-label fw-semibold">Mô tả</label>
                     <textarea class="form-control" id="description" th:field="*{description}" rows="4"
                               style="border-radius:8px; padding:10px 14px;"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="categoryId" class="form-label fw-semibold">Nhom dich vu</label>
+                    <label for="categoryId" class="form-label fw-semibold">Nhóm dịch vụ</label>
                     <select class="form-select" id="categoryId" th:field="*{category.id}"
                             style="border-radius:8px; padding:10px 14px;">
-                        <option value="">-- Chon nhom dich vu --</option>
+                        <option value="">-- Chọn nhóm dịch vụ --</option>
                         <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
                     </select>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="provider" class="form-label fw-semibold">Nha cung cap</label>
+                        <label for="provider" class="form-label fw-semibold">Nhà cung cấp</label>
                         <input class="form-control" type="text" id="provider" th:field="*{provider}"
                                style="border-radius:8px; padding:10px 14px;">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="unit" class="form-label fw-semibold">Don vi tinh</label>
+                        <label for="unit" class="form-label fw-semibold">Đơn vị tính</label>
                         <input class="form-control" type="text" id="unit" th:field="*{unit}"
                                style="border-radius:8px; padding:10px 14px;">
                     </div>
@@ -55,17 +55,17 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="costType" class="form-label fw-semibold">Loai tinh phi</label>
+                        <label for="costType" class="form-label fw-semibold">Loại tính phí</label>
                         <select class="form-select" id="costType" th:field="*{costType}"
                                 style="border-radius:8px; padding:10px 14px;">
-                            <option value="">-- Chon loai --</option>
-                            <option value="CO_DINH">Co dinh</option>
-                            <option value="THEO_SO_LUONG">Theo so luong</option>
-                            <option value="THEO_DIEN_TICH">Theo dien tich</option>
+                            <option value="">-- Chọn loại --</option>
+                            <option value="CO_DINH">Cố định</option>
+                            <option value="THEO_SO_LUONG">Theo số lượng</option>
+                            <option value="THEO_DIEN_TICH">Theo diện tích</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="costValue" class="form-label fw-semibold">Don gia</label>
+                        <label for="costValue" class="form-label fw-semibold">Đơn giá</label>
                         <input class="form-control" type="number" step="1000" min="0" id="costValue" th:field="*{costValue}"
                                style="border-radius:8px; padding:10px 14px;">
                     </div>
@@ -79,17 +79,17 @@
 
                 <!-- Hinh anh hien tai -->
                 <div class="mb-3" th:if="${service.imageUrl != null}">
-                    <label class="form-label fw-semibold">Hinh anh hien tai</label>
+                    <label class="form-label fw-semibold">Hình ảnh hiện tại</label>
                     <div>
                         <img th:src="@{${service.imageUrl}}" style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #e5e7eb;" alt="current">
                     </div>
                 </div>
 
                 <div class="mb-4">
-                    <label for="imageFile" class="form-label fw-semibold">Thay doi hinh anh</label>
+                    <label for="imageFile" class="form-label fw-semibold">Thay đổi hình ảnh</label>
                     <input class="form-control" type="file" id="imageFile" name="imageFile" accept="image/*"
                            style="border-radius:8px; padding:10px 14px;" onchange="previewServiceImage(event)">
-                    <small class="text-muted">De trong neu khong muon thay doi</small>
+                    <small class="text-muted">Để trống nếu không muốn thay đổi</small>
                     <div id="imagePreview" class="mt-2" style="display:none;">
                         <img id="previewImg" style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #e5e7eb;" alt="preview">
                     </div>
@@ -97,9 +97,9 @@
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-success" style="border-radius:10px; padding:10px 28px; font-weight:600;">
-                        <i class="bi bi-check-lg me-1"></i>Cap nhat
+                        <i class="bi bi-check-lg me-1"></i>Cập nhật
                     </button>
-                    <a th:href="@{/quan-ly-dich-vu}" class="btn btn-secondary" style="border-radius:10px; padding:10px 28px;">Huy</a>
+                    <a th:href="@{/quan-ly-dich-vu}" class="btn btn-secondary" style="border-radius:10px; padding:10px 28px;">Hủy</a>
                 </div>
             </form>
         </div>
