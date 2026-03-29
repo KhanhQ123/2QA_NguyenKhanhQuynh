@@ -59,8 +59,7 @@
         <div class="form-group">
             <label for="imageFile">Hinh anh:</label>
             <input class="form-control" type="file" id="imageFile" name="imageFile"
-                   accept="image/*" onchange="previewImage(this)">
-            <div class="image-preview-box" id="previewBox">
+                   accept="image/*" onchange="previewImage(this)">            <div class="image-preview-box" id="previewBox">
                 <img th:if="${product.image != null and !#strings.isEmpty(product.image)}"
                      th:src="${product.image}" id="currentImg">
                 <span th:unless="${product.image != null and !#strings.isEmpty(product.image)}"
@@ -108,19 +107,7 @@
     </div>
 </div>
 
-<script>
-    function previewImage(input) {
-        const box = document.getElementById('previewBox');
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                box.innerHTML = '<img src="' + e.target.result + '">';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function openCategoryModal() { document.getElementById('categoryModal').classList.add('active'); }
-    function closeCategoryModal() { document.getElementById('categoryModal').classList.remove('active'); }
-</script>
+<script th:src="@{/js/image-preview.js}" defer></script>
+<script th:src="@{/js/category-modal.js}" defer></script>
 </body>
 </html>

@@ -88,7 +88,7 @@
                 <div class="mb-4">
                     <label for="imageFile" class="form-label fw-semibold">Thay doi hinh anh</label>
                     <input class="form-control" type="file" id="imageFile" name="imageFile" accept="image/*"
-                           style="border-radius:8px; padding:10px 14px;" onchange="previewImage(event)">
+                           style="border-radius:8px; padding:10px 14px;" onchange="previewServiceImage(event)">
                     <small class="text-muted">De trong neu khong muon thay doi</small>
                     <div id="imagePreview" class="mt-2" style="display:none;">
                         <img id="previewImg" style="max-width:200px; max-height:200px; border-radius:8px; border:1px solid #e5e7eb;" alt="preview">
@@ -106,16 +106,6 @@
     </div>
 </div>
 
-<script th:inline="javascript">
-function previewImage(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        var preview = document.getElementById('previewImg');
-        preview.src = reader.result;
-        document.getElementById('imagePreview').style.display = 'block';
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
-</script>
+<script th:src="@{/js/image-preview.js}" defer></script>
 </body>
 </html>
