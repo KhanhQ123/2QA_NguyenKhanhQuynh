@@ -4,19 +4,19 @@
       layout:decorate="~{_layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Nguoi dang ky dich vu</title>
+    <title>Người đăng ký dịch vụ</title>
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
     <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
         <div>
             <h2 style="font-weight:700; color:#1e293b; margin:0;">
-                <i class="bi bi-people-fill me-2" style="color:#6366f1;"></i>Nguoi dang ky
+                <i class="bi bi-people-fill me-2" style="color:#6366f1;"></i>Người đăng ký
             </h2>
-            <p class="text-muted mb-0 mt-1">Dich vu: <strong th:text="${service.name}"></strong></p>
+            <p class="text-muted mb-0 mt-1">Dịch vụ: <strong th:text="${service.name}"></strong></p>
         </div>
         <a th:href="@{/quan-ly-dich-vu}" class="btn btn-outline-secondary" style="border-radius:10px;">
-            <i class="bi bi-arrow-left me-1"></i>Quay lai
+            <i class="bi bi-arrow-left me-1"></i>Quay lại
         </a>
     </div>
 
@@ -35,11 +35,11 @@
                 <thead style="background:#f8fafc;">
                 <tr>
                     <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">STT</th>
-                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">TEN DANG NHAP</th>
-                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">NGAY DANG KY</th>
-                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">SO TIEN</th>
-                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">TRANG THAI</th>
-                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem; text-align:center;">THAO TAC</th>
+                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">TÊN ĐĂNG NHẬP</th>
+                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">NGÀY ĐĂNG KÝ</th>
+                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">SỐ TIỀN</th>
+                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem;">TRẠNG THÁI</th>
+                    <th style="padding:14px 16px; font-weight:600; color:#64748b; font-size:0.85rem; text-align:center;">THAO TÁC</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,11 +54,11 @@
                     <td style="padding:12px 16px;">
                         <span th:if="${paymentMap.containsKey(sub.id) and paymentMap.get(sub.id).status == 'DA_THANH_TOAN'}"
                               class="badge" style="background:#dcfce7; color:#16a34a; padding:6px 14px; border-radius:20px; font-weight:600;">
-                            <i class="bi bi-check-circle-fill me-1"></i>Da thanh toan
+                            <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
                         </span>
                         <span th:if="${paymentMap.containsKey(sub.id) and paymentMap.get(sub.id).status == 'CHUA_THANH_TOAN'}"
                               class="badge" style="background:#fee2e2; color:#dc2626; padding:6px 14px; border-radius:20px; font-weight:600;">
-                            <i class="bi bi-x-circle-fill me-1"></i>Chua thanh toan
+                            <i class="bi bi-x-circle-fill me-1"></i>Chưa thanh toán
                         </span>
                     </td>
                     <td style="padding:12px 16px; text-align:center;">
@@ -67,8 +67,8 @@
                               method="post" class="d-inline">
                             <input type="hidden" name="serviceId" th:value="${service.id}"/>
                             <button type="submit" class="btn btn-sm btn-outline-warning" style="border-radius:8px; padding:6px 14px;"
-                                    title="Doi trang thai thanh toan">
-                                <i class="bi bi-arrow-repeat"></i> Doi TT
+                                    title="Đổi trạng thái thanh toán">
+                                <i class="bi bi-arrow-repeat"></i> Đổi TT
                             </button>
                         </form>
                     </td>
@@ -76,7 +76,7 @@
                 <tr th:if="${#lists.isEmpty(subscriptions)}">
                     <td colspan="6" class="text-center py-5" style="color:#94a3b8;">
                         <i class="bi bi-person-x" style="font-size:2rem;"></i>
-                        <p class="mt-2 mb-0">Chua co ai dang ky dich vu nay</p>
+                        <p class="mt-2 mb-0">Chưa có ai đăng ký dịch vụ này</p>
                     </td>
                 </tr>
                 </tbody>
