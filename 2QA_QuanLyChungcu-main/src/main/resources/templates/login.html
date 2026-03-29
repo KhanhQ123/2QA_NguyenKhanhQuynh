@@ -5,23 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/login.css}">
-    <style>
-        .input-group select {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 9px;
-            border: 1px solid #d1d5db;
-            outline: none;
-            background-color: #f9fafb;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .input-group select:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
-            background-color: #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -46,7 +30,6 @@
         <div th:if="${registerSuccess}" class="logout-msg" th:text="${registerSuccess}"></div>
         <div th:if="${registerError}" class="error-msg" th:text="${registerError}"></div>
 
-        <!-- Form DANG NHAP -->
         <form id="login-form" class="form-panel active" th:action="@{/do-login}" method="post">
             <h2>Chào mừng trở lại</h2>
             <p class="subtitle">Đăng nhập để quản lý chung cư của bạn.</p>
@@ -69,9 +52,19 @@
                     Đăng nhập với Google
                 </a>
             </div>
+
+            <div class="auth-card">
+            <button type="submit" class="btn-primary shadow-blue">Vào hệ thống</button>
+            </div>
+
+            <div class="divider"><span>Hoặc</span></div>
+
+            <a th:href="@{/oauth2/authorization/google}" class="google-login-custom">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Tiếp tục với Google
+            </a>
         </form>
 
-        <!-- Form DANG KY /////-->
         <form id="register-form" class="form-panel" th:action="@{/register}" method="post">
             <h2>Tạo tài khoản mới</h2>
             <p class="subtitle">Đăng ký tài khoản quản trị chung cư.</p>
